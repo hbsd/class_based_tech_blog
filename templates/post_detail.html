@@ -7,5 +7,20 @@
 </div>
 
 <p><a href="{% url 'post_edit' post.pk %}">+ Edit Post</a></p>
-<p><a href="{% url 'post_delete' post.pk %}">+ Delete Post</a></p>
+<p><a href="{% url 'post_delete' post.pk %}">+ Delete Post</a></p><br>
+
+<hr>
+
+<h4>Add a comment</h4>
+<form action="" method='POST'>{% csrf_token %}
+  {{ form }}
+  <button type='submit'>Save</button>
+</form><br>
+
+<h4>Comments</h4>
+{% for comment in post.comment_set.all %}
+<p>{{ comment.author }}</p>
+<p>{{ comment }}</p><br>
+
+{% endfor %} 
 {% endblock content %} 
