@@ -7,6 +7,7 @@ from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import View
 from django.urls import reverse_lazy, reverse
+from django.db.models import Q
 
 from .forms import CommentForm
 
@@ -16,7 +17,7 @@ from .models import Post
 class BlogListView(ListView):
 	model = Post
 	template_name = 'home.html'
-	paginate_by = 2
+	paginate_by = 4
 
 
 class BlogDetailView(DetailView, View):
@@ -95,3 +96,15 @@ class CommentPost(SingleObjectMixin, FormView):
 	def get_success_url(self):
 		post =  self.get_object()
 		return reverse('post_detail', kwargs={'slug': post.slug})
+
+
+class SearchResultsView(ListView):
+	model = Post
+	template_name = 'search_results.html'
+
+	def get_queryset(self):
+		query = self.request.GET.get('q')
+		object_list = Post.objects.filter(
+			Q(title__icontains=query) | Q(body__icontains=query)
+		)
+		return object_list

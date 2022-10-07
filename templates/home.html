@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<form action="{% url 'search_results' %}" method='GET'>
+  <input name="q" type="text" placeholder='Search...'>
+</form>
+
 {% for post in post_list %}
 <div class="post-entry">
   <a href="{{ post.get_absolute_url }}"><br>
@@ -35,5 +39,4 @@
         {% endif %}
     </span>
 </div>
-
 {% endblock content %} 

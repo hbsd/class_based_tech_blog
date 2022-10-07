@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<form action="{% url 'search_results' %}" method='GET'>
+  <input name="q" type="text" placeholder='Search...'>
+</form>
+
 <div class="post-entry">
   <center>
 	<p>Published on {{ post.publish }} by {{ post.author }}</p><br>
