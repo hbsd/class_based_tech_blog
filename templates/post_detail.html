@@ -2,8 +2,11 @@
 
 {% block content %}
 <div class="post-entry">
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.body }}</p>
+  <center>
+	<img src="{{ post.title_image.url }}" alt="{{ post.title }}" style='width:500px;height:400px;'>
+    <h2>{{ post.title }}</h2>
+  </center><br>
+  <p>{{ post.body }}</p><br>
 </div>
 
 <p><a href="{% url 'post_edit' post.pk %}">+ Edit Post</a></p>

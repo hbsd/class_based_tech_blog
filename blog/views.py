@@ -39,7 +39,7 @@ class BlogDetailView(DetailView, View):
 class BlogCreateView(LoginRequiredMixin, CreateView):
 	model = Post
 	template_name = 'post_new.html'
-	fields = ['title', 'author', 'body']
+	fields = ['title_image', 'title', 'author', 'body']
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -49,7 +49,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
 class BlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Post
 	template_name = 'post_edit.html'
-	fields = ['title', 'body']
+	fields = ['title_image', 'title', 'body']
 
 	def test_func(self):
 		obj = self.get_object()
