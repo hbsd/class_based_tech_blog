@@ -3,6 +3,7 @@
 {% block content %}
 <div class="post-entry">
   <center>
+	<p>Published on {{ post.publish }} by {{ post.author }}</p><br>
 	<img src="{{ post.title_image.url }}" alt="{{ post.title }}" style='width:500px;height:400px;'>
     <h2>{{ post.title }}</h2>
   </center><br>
