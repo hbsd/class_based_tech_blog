@@ -16,6 +16,7 @@ from .models import Post
 class BlogListView(ListView):
 	model = Post
 	template_name = 'home.html'
+	paginate_by = 2
 
 
 class BlogDetailView(DetailView, View):
