@@ -49,7 +49,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
 class BlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Post
 	template_name = 'post_edit.html'
-	fields = ['title_image', 'title', 'body']
+	fields = ['title_image', 'slug', 'title', 'body']
 
 	def test_func(self):
 		obj = self.get_object()
@@ -93,4 +93,4 @@ class CommentPost(SingleObjectMixin, FormView):
 
 	def get_success_url(self):
 		post =  self.get_object()
-		return reverse('post_detail', kwargs={'pk': post.pk})
+		return reverse('post_detail', kwargs={'slug': post.slug})

@@ -3,10 +3,10 @@
 {% block content %}
 {% for post in post_list %}
 <div class="post-entry">
-  <a href="{% url 'post_detail' post.pk %}"><br>
+  <a href="{{ post.get_absolute_url }}"><br>
 	<img src="{{ post.title_image.url }}" alt="{{ post_title }}" style='width:200px;height:150px;'>
   </a>
-  <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+  <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
   <p>{{ post.body|truncatewords:'28' }}</p>
 </div>
 <hr>

@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.utils import timezone
+from django.template.defaultfilters import slugify
 
 
 class Post(models.Model):
@@ -11,6 +12,7 @@ class Post(models.Model):
 		PUBLISHED = 'PB', 'Published'
 
 	title = models.CharField(max_length=200, blank=False, null=False)
+	slug = models.SlugField(max_length=250, null=False, unique=True)
 	title_image = models.ImageField(upload_to='title_image/', blank=False)
 	author = models.ForeignKey(
 		'auth.User',
@@ -34,7 +36,12 @@ class Post(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('post_detail', kwargs={'pk': self.pk})
+		return reverse('post_detail', kwargs={'slug': self.slug})
+
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			self.slug = slugify(self.title)
+		return super().save(*args, **kwargs)
 
 
 class Comment(models.Model):
