@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Site Metas -->
+    <title>Tech Blog</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+    
+    <!-- Design fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet"> 
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- FontAwesome Icons core CSS -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+
+    <!-- Responsive styles for this template -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+    <!-- Colors for this template -->
+    <link href="{% static 'css/colors.css' %}" rel="stylesheet">
+
+    <!-- Version Tech CSS for this template -->
+    <link href="{% static 'css/version/tech.css' %}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <div id="wrapper">
+        <header class="tech-header header">
+            <div class="container-fluid">
+                <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'tech_index' %}"><img src="{% static 'images/version/tech-logo.png' %}" alt=""></a>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
+
+                                <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
+                                    <li>
+                                        <div class="container">
+                                            <div class="mega-menu-content clearfix">
+
+                                                <div class="tab-details clearfix">
+                                                    <div id="cat01" class="tabcontent active">
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                                                <div class="blog-box">
+                                                                    <div class="post-media">
+                                                                        <a href="{{ post.get_absolute_url }}" title="">
+                                                                        </a>
+                                                                    </div><!-- end media -->
+ 
+                                                                </div><!-- end blog-box -->
+                                                            </div>
+                                                        </div><!-- end row -->
+                                                    </div>
+                                                </div><!-- end tab-details -->
+                                            </div><!-- end mega-menu-content -->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="tech-category-01.html">Gadgets</a>
+                            </li>                   
+                            <li class="nav-item">
+                                <a class="nav-link" href="tech-category-02.html">Videos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="tech-category-03.html">Reviews</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="tech-contact.html">Contact Us</a>
+                            </li>							
+							<li class="nav-item">
+						  {% if user.is_authenticated %}
+						  <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+						  {% else %}
+						  <span class="nav-link">
+						  <a href="{% url 'login' %}">Log In</a> |
+						  <a href="{% url 'signup' %}">Sign Up</a>
+						  </span>
+						  {% endif %}
+						  </li>
+							<li>
+							  <form action="{% url 'search_results' %}" method='GET'>
+							  <input name="q" type="text" placeholder='Search...'>
+							  </form>
+							</li>
+                        </ul>
+                    </div>
+                </nav>
+            </div><!-- end container-fluid -->
+        </header><!-- end market-header -->

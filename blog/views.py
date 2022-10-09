@@ -16,13 +16,13 @@ from .models import Post
 
 class BlogListView(ListView):
 	model = Post
-	template_name = 'home.html'
+	template_name = 'tech_index.html'
 	paginate_by = 4
 
 
 class BlogDetailView(DetailView, View):
 	model = Post
-	template_name = 'post_detail.html'
+	template_name = 'tech_single.html'
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
@@ -61,7 +61,7 @@ class BlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class BlogDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Post
 	template_name = 'post_delete.html'
-	success_url = reverse_lazy('home')
+	success_url = reverse_lazy('tech_index')
 
 	def test_func(self):
 		obj = self.get_object()
@@ -70,7 +70,7 @@ class BlogDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class CommentGet(DetailView):
 	model = Post
-	template_name = 'post_detail.html'
+	template_name = 'tech_single.html'
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
@@ -81,7 +81,7 @@ class CommentGet(DetailView):
 class CommentPost(SingleObjectMixin, FormView):
 	model = Post
 	form_class = CommentForm
-	template_name = 'post_detail.html'
+	template_name = 'tech_single.html'
 
 	def post(self, request, *args, **kwargs):
 		self.object = self.get_object()
@@ -95,7 +95,7 @@ class CommentPost(SingleObjectMixin, FormView):
 
 	def get_success_url(self):
 		post =  self.get_object()
-		return reverse('post_detail', kwargs={'slug': post.slug})
+		return reverse('tech_single', kwargs={'slug': post.slug})
 
 
 class SearchResultsView(ListView):

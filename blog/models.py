@@ -36,7 +36,7 @@ class Post(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('post_detail', kwargs={'slug': self.slug})
+		return reverse('tech_single', kwargs={'slug': self.slug})
 
 	def save(self, *args, **kwargs):
 		if not self.slug:
@@ -56,4 +56,4 @@ class Comment(models.Model):
 		return self.comment
 
 	def get_absolute_url(self):
-		return reverse('post_details')
+		return reverse('tech_single')
