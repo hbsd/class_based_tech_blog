@@ -6,6 +6,8 @@ from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
 
+from django.contrib.auth.models import User
+
 
 class Post(models.Model):
 
