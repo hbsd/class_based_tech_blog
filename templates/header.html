@@ -87,17 +87,11 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="tech-category-01.html">Gadgets</a>
-                            </li>                   
-                            <li class="nav-item">
-                                <a class="nav-link" href="tech-category-02.html">Videos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="tech-category-03.html">Reviews</a>
-                            </li>
+                                <a class="nav-link" href="{% url 'tech_index' %}">Home</a>
+                            </li>					
                             <li class="nav-item">
                                 <a class="nav-link" href="tech-contact.html">Contact Us</a>
-                            </li>							
+                            </li>					   		
 							<li class="nav-item">
 						  {% if user.is_authenticated %}
 						  <a class="nav-link" href="{% url 'logout' %}">Log out</a>
@@ -108,7 +102,7 @@
 						  </span>
 						  {% endif %}
 						  </li>
-							<li>
+							<li style='margin-left: 250px;'>
 							  <form action="{% url 'search_results' %}" method='GET'>
 							  <input name="q" type="text" placeholder='Search...'>
 							  </form>

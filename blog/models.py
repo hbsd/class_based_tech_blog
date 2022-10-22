@@ -4,6 +4,8 @@ from django.conf import settings
 from django.utils import timezone
 from django.template.defaultfilters import slugify
 
+from taggit.managers import TaggableManager
+
 
 class Post(models.Model):
 
@@ -25,6 +27,7 @@ class Post(models.Model):
 	status = models.CharField(max_length=2,
 							  choices=Status.choices,
 							  default=Status.PUBLISHED)
+	tags = TaggableManager()
 
 	class Meta:
 		ordering = ['-publish']

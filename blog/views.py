@@ -1,3 +1,4 @@
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import (
 	LoginRequiredMixin,
 	UserPassesTestMixin
@@ -12,6 +13,8 @@ from django.db.models import Q
 from .forms import CommentForm
 
 from .models import Post
+
+from taggit.models import Tag
 
 
 class BlogListView(ListView):
@@ -41,7 +44,7 @@ class BlogDetailView(DetailView, View):
 class BlogCreateView(LoginRequiredMixin, CreateView):
 	model = Post
 	template_name = 'post_new.html'
-	fields = ['title_image', 'title', 'body']
+	fields = ['title_image', 'title', 'body', 'tags']
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -51,7 +54,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
 class BlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Post
 	template_name = 'post_edit.html'
-	fields = ['title_image', 'slug', 'title', 'body']
+	fields = ['title_image', 'slug', 'title', 'body', 'tags']
 
 	def test_func(self):
 		obj = self.get_object()

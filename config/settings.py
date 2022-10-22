@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 	'dj_rest_auth',
 	'dj_rest_auth.registration',
 	'drf_spectacular',
+	'taggit',
 
 	# Local apps
 	'blog.apps.BlogConfig',
@@ -175,3 +176,5 @@ SPECTACULAR_SETTINGS = {
 	'DESCRIPTION': 'Tech Blog is a technology blog, we sharing marketing, news and gadget articles.',
 	'VERSION': '1.0.0',
 }
+
+TAGGIT_CASE_INSENSITIVE = True
